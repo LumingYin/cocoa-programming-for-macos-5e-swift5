@@ -34,7 +34,7 @@ class Document: NSDocument, NSWindowDelegate {
         
         let endedEditing = window.makeFirstResponder(window)
         if !endedEditing {
-            print("Unable to end editing")
+            Swift.print("Unable to end editing")
             return
         }
         
@@ -64,14 +64,14 @@ class Document: NSDocument, NSWindowDelegate {
         let row = sortedEmployees.index(of: employee)!
         
         // Begin the edit in the first column
-        print("starting edit of \(employee) in row \(row)")
+        Swift.print("starting edit of \(employee) in row \(row)")
         tableView.editColumn(0, row: row, with: nil, select: true)
     }
     
     // MARK: - Accessors
     
     func insertObject(_ employee: Employee, inEmployeesAtIndex index: Int) {
-        print("adding \(employee) to the employees array")
+        Swift.print("adding \(employee) to the employees array")
         
         // Add the inverse of this operation to the undo stack
         let undo: UndoManager = undoManager!
@@ -86,7 +86,7 @@ class Document: NSDocument, NSWindowDelegate {
     func removeObjectFromEmployeesAtIndex(_ index: Int) {
         let employee: Employee = employees[index]
         
-        print("removing \(employee) from the employees array")
+        Swift.print("removing \(employee) from the employees array")
         
         // Add the inverse of this operation to the undo stack 
         let undo: UndoManager = undoManager!
@@ -126,7 +126,7 @@ class Document: NSDocument, NSWindowDelegate {
             }
             
             let undo: UndoManager = undoManager!
-            print("oldValue=\(oldValue)")
+            Swift.print("oldValue=\(oldValue)")
             (undo.prepare(withInvocationTarget: object) as AnyObject).setValue(oldValue, forKeyPath: keyPath)
         }
     }
@@ -166,7 +166,7 @@ class Document: NSDocument, NSWindowDelegate {
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        print("About to read data of type \(typeName).");
+        Swift.print("About to read data of type \(typeName).");
         employees = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Employee]
     }
 
