@@ -78,7 +78,7 @@ class Document: NSDocument, NSTableViewDataSource {
         
         // Break the string into lines
         filenames = string.components(separatedBy: "\n")
-        print("filenames = \(filenames)")
+        Swift.print("filenames = \(filenames)")
         
         // In case of revert
         tableView?.reloadData()
